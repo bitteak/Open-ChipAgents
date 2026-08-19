@@ -1,0 +1,4 @@
+interface:
+  display_name: "macOS RTL to GDS"
+  short_description: "Deploy and verify an Apple Silicon open-source RTL-to-GDS stack"
+  default_prompt: "Use $macos-rtl2gds to install and verify the open-source EDA toolchain and PDKs on this Mac."

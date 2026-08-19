@@ -1,0 +1,24 @@
+{
+  "librelane": {
+    "version": "3.0.5",
+    "commit": "bf87321d2f6099414424a641b10af308ecb01df5",
+    "source": "https://github.com/librelane/librelane"
+  },
+  "pdks": {
+    "sky130A": {
+      "open_pdks_commit": "8afc8346a57fe1ab7934ba5a6056ea8b43078e71"
+    },
+    "gf180mcuD": {
+      "open_pdks_commit": "54435919abffb937387ec956209f9cf5fd2dfbee"
+    }
+  },
+  "sha256_reference": {
+    "commit": "6ae6b275ce7d401ae7a423fb11eda4c9074ac5cb",
+    "source": "https://github.com/CDragon123-code/SHA-256"
+  },
+  "deepseek_harness": {
+    "tested_commit": "47f943859bef60e4160492346772ded9b24f765a",
+    "source": "https://github.com/deepseek-ai/deepseek-harness",
+    "status": "developer-preview"
+  }
+}

@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+PROFILE="web"
+HARNESS_ROOT="${DEEPSEEK_HARNESS_ROOT:-}"
+FORWARD=()
+
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        --profile)
+            PROFILE="${2:?missing profile name}"
+            shift 2
+            ;;
+        --harness-root)
+            HARNESS_ROOT="${2:?missing harness path}"
+            shift 2
+            ;;
+        --)
+            shift
+            FORWARD+=("$@")
+            break
+            ;;
+        *)
+            FORWARD+=("$1")
+            shift
+            ;;
+    esac
+done
+
+export OPEN_CHIPAGENTS_ROOT="${ROOT}"
+export OPEN_CHIPAGENTS_PDK_ROOT="${ROOT}/chip-agent-lab/.cache/pdks/ciel"
+cd "${ROOT}"
+
+if command -v dsh >/dev/null 2>&1; then
+    exec dsh --profile "${PROFILE}" "${FORWARD[@]}"
+fi
+
+if [[ -n "${HARNESS_ROOT}" && -f "${HARNESS_ROOT}/package.json" ]] && command -v pnpm >/dev/null 2>&1; then
+    cd "${HARNESS_ROOT}"
+    exec pnpm dsh --profile "${PROFILE}" "${FORWARD[@]}"
+fi
+
+echo "Cannot find dsh. Pass --harness-root /path/to/deepseek-harness with pnpm available." >&2
+exit 2

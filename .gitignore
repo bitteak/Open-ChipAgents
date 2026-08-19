@@ -1,0 +1,13 @@
+.DS_Store
+toolchains/
+/references/CDragon-SHA-256
+chip-agent-lab/.cache/
+chip-agent-lab/runs/
+chip-agent-lab/designs/*/runs/
+*.log
+*.vcd
+*.vvp
+node_modules/
+*.tgz
+plugins/dsh-sky130-flow/coverage/
+plugins/dsh-sky130-flow/.tsbuildinfo

@@ -1,0 +1,6 @@
+/.cache/
+/runs/
+/designs/*/runs/
+*.vcd
+*.vvp
+*.log

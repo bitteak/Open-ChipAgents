@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+LAB_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+WORKSPACE_ROOT="$(cd "${LAB_ROOT}/.." && pwd)"
+LIBRELANE_ROOT="${WORKSPACE_ROOT}/toolchains/librelane"
+NIX_BIN="${NIX_BIN:-/nix/var/nix/profiles/default/bin/nix}"
+
+if [[ ! -x "${NIX_BIN}" ]]; then
+    echo "Nix is not installed at ${NIX_BIN}. Run the macos-rtl2gds installation skill first." >&2
+    exit 2
+fi
+
+if [[ ! -f "${LIBRELANE_ROOT}/flake.nix" ]]; then
+    echo "LibreLane checkout not found: ${LIBRELANE_ROOT}" >&2
+    exit 2
+fi
+
+if [[ $# -eq 0 ]]; then
+    exec "${NIX_BIN}" develop "${LIBRELANE_ROOT}"
+fi
+
+exec "${NIX_BIN}" develop "${LIBRELANE_ROOT}" --command "$@"

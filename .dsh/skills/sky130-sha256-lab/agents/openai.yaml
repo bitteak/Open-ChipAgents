@@ -1,0 +1,4 @@
+interface:
+  display_name: "SKY130 SHA-256 Lab"
+  short_description: "Run and interpret the constrained SKY130A SHA-256 flow"
+  default_prompt: "Use $sky130-sha256-lab to run the SHA-256 SKY130A experiment and explain its results."
